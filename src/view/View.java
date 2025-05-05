@@ -10,7 +10,7 @@ public class View extends JFrame {
     private final JTextArea outputArea;
 
     public View() {
-        setTitle("LU Factorization Solver - Doolittle");
+        setTitle("LU Factorization Solver - Doolittle's Method");
         setSize(600, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -33,14 +33,18 @@ public class View extends JFrame {
 
         solveButton = new JButton("Solve");
         solveButton.setVisible(false);
+        solveButton.setPreferredSize(new Dimension(120, 40));
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(solveButton);
 
         add(sizeInputPanel, BorderLayout.NORTH);
         add(matrixPanel, BorderLayout.CENTER);
-        add(solveButton, BorderLayout.SOUTH);
+        add(buttonPanel, BorderLayout.SOUTH);
         add(new JScrollPane(outputArea), BorderLayout.SOUTH);
 
         JPanel southPanel = new JPanel(new BorderLayout());
-        southPanel.add(solveButton, BorderLayout.NORTH);
+        southPanel.add(buttonPanel, BorderLayout.NORTH);
         southPanel.add(new JScrollPane(outputArea), BorderLayout.CENTER);
         add(southPanel, BorderLayout.SOUTH);
     }
