@@ -28,7 +28,7 @@ public class View extends JFrame {
         matrixPanel.add(new JLabel("Matrix: A"));
         matrixPanel.setVisible(false);
 
-        outputArea = new JTextArea(10, 40);
+        outputArea = new JTextArea(10, 10);
         outputArea.setEditable(false);
 
         solveButton = new JButton("Solve");
@@ -73,7 +73,7 @@ public class View extends JFrame {
         title.add(new JLabel("Vector B"));
         matrixPanel.add(title);
 
-        JPanel input = new JPanel(new GridLayout(matrixFields.length, matrixFields.length + 1));
+        JPanel input = new JPanel(new GridLayout(matrixFields.length, matrixFields.length));
         for (int i = 0; i < matrixFields.length; i++) {
             for (int j = 0; j < matrixFields[i].length; j++) {
                 input.add(matrixFields[i][j]);
