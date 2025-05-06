@@ -65,31 +65,15 @@ public class Controller {
 
             Matrix matrix = new Matrix(size);
             matrix.factorize(A);
-            double[] y = matrix.forwardSubstitute(b);
-            double[] x = matrix.backwardSubstitute(y);
+            double[] x = matrix.solve(b);
 
             StringBuilder result = new StringBuilder("Solution vector:\n");
             for (int i = 0; i < x.length; i++) {
                 result.append("x").append(i + 1).append(" = ").append(x[i]).append("\n");
             }
 
-            result.append("\nMatrix L:\n");
-            double[][] L = matrix.getMatrixL();
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < size; j++) {
-                    result.append(String.format("%8.4f", L[i][j])).append(" ");
-                }
-                result.append("\n");
-            }
-
-            result.append("\nMatrix U:\n");
-            double[][] U = matrix.getMatrixU();
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < size; j++) {
-                    result.append(String.format("%8.4f", U[i][j])).append(" ");
-                }
-                result.append("\n");
-            }
+            result.append("\nMatrix L:\n").append(matrix.displayL());
+            result.append("\nMatrix U:\n").append(matrix.displayU());
 
             view.showOutput(result.toString());
         } catch (NumberFormatException e) {

@@ -11,12 +11,17 @@ public class Matrix {
         this.matrixU = new double[size][size];
     }
 
-    public double[][] getMatrixL() {
-        return matrixL;
+    public String displayL() {
+        return parseToString(matrixL);
     }
 
-    public double[][] getMatrixU() {
-        return matrixU;
+    public String displayU() {
+        return parseToString(matrixU);
+    }
+
+    public double[] solve(double[] b) {
+        double[] y = forwardSubstitute(b);
+        return backwardSubstitute(y);
     }
 
     public void factorize(double[][] A) {
@@ -65,5 +70,16 @@ public class Matrix {
             x[i] = (y[i] - add) / matrixU[i][i];
         }
         return x;
+    }
+
+    private String parseToString(double[][] matrix) {
+        StringBuilder string = new StringBuilder();
+        for (double[] row : matrix) {
+            for (double val : row) {
+                string.append(String.format("%8.4f", val)).append(" ");
+            }
+            string.append("\n");
+        }
+        return string.toString();
     }
 }
